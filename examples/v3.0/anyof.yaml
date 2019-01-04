@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  version: 0.0.0
+  title: test
+paths: {}
+components:
+  schemas:
+    # Item type is displayed
+    ArrayOfStr:
+      type: array
+      items:
+        type: string
+
+    # Item type is NOT displayed
+    ArrayOfStrOrInt:
+      type: array
+      items:
+        oneOf:
+          - type: integer
+          - type: string
+
+    # Neither model name nor contents is displayed
+    CatOrDog:
+      anyOf:
+        - $ref: '#/components/schemas/Cat'
+        - $ref: '#/components/schemas/Dog'
+
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    Cat:
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            huntingSkill:
+              type: string
+              description: The measured skill for hunting
+              default: lazy
+              enum:
+              - clueless
+              - lazy
+              - adventurous
+              - aggressive
+    Dog:
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            packSize:
+              type: integer
+              format: int32
+              description: the size of the pack the dog is from
+              default: 0
+              minimum: 0
