@@ -147,15 +147,31 @@ components:
         - age
           
     PetByType:
+      anyOf:
+        - $ref: '#/components/schemas/PetByTypeIn'
+        - $ref: '#/components/schemas/PetByTypeOut'
+        
+    PetByTypeIn
       type: object
-      properties:
-        pet_type:
-          type: string
-          enum: [Cat, Dog]
-        hunts:
-          type: boolean
-      required: 
-        - pet_type
+        properties:
+          pet_type:
+            type: string
+            enum: [Cat, Dog]
+          hunts:
+            type: boolean
+        required: 
+          - pet_type
+          
+    PetByTypeOut
+      type: object
+        properties:
+          pet_out_type:
+            type: string
+            enum: [Dog, Cow]
+          hunts:
+            type: boolean
+        required: 
+          - pet_type
         
     Pet:
       allOf:
