@@ -151,7 +151,7 @@ components:
         - $ref: '#/components/schemas/PetByTypeIn'
         - $ref: '#/components/schemas/PetByTypeOut'
         
-    PetByTypeIn
+    PetByTypeIn:
       type: object
         properties:
           pet_type:
@@ -162,7 +162,7 @@ components:
         required: 
           - pet_type
           
-    PetByTypeOut
+    PetByTypeOut:
       type: object
         properties:
           pet_out_type:
