@@ -152,7 +152,6 @@ components:
         - $ref: '#/components/schemas/PetByTypeOut'
         
     PetByTypeIn:
-      type: object
         properties:
           pet_type:
             type: string
@@ -163,7 +162,6 @@ components:
           - pet_type
           
     PetByTypeOut:
-      type: object
         properties:
           pet_out_type:
             type: string
@@ -171,7 +169,7 @@ components:
           hunts:
             type: boolean
         required: 
-          - pet_type
+          - pet_out_type
         
     Pet:
       allOf:
