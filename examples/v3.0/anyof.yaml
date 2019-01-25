@@ -152,24 +152,26 @@ components:
         - $ref: '#/components/schemas/PetByTypeOut'
         
     PetByTypeIn:
-        properties:
-          pet_type:
-            type: string
-            enum: [Cat, Dog]
-          hunts:
-            type: boolean
-        required: 
-          - pet_type
+      type: object
+      properties:
+        pet_type:
+          type: string
+          enum: [Cat, Dog]
+        hunts:
+          type: boolean
+      required: 
+        - pet_type
           
     PetByTypeOut:
-        properties:
-          pet_out_type:
-            type: string
-            enum: [Dog, Cow]
-          hunts:
-            type: boolean
-        required: 
-          - pet_out_type
+      type: object
+      properties:
+        pet_out_type:
+          type: string
+          enum: [Dog, Cow]
+        hunts:
+          type: boolean
+      required: 
+        - pet_out_type
         
     Pet:
       allOf:
