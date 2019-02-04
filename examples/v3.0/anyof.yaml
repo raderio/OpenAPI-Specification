@@ -142,6 +142,7 @@ components:
          - $ref: '#/components/schemas/IndividualRegistration'
          - $ref: '#/components/schemas/BusinessRegistration'
          type: object
+         
     IndividualRegistration: 
       type: object
       properties: 
@@ -150,11 +151,13 @@ components:
           - $ref: '#/components/schemas/SocialChannel'
           - $ref: '#/components/schemas/EmailIndividualChannel'
           type: object
+          
     BusinessRegistration: 
       type: object
       properties: 
         channel: 
           - $ref: '#/components/schemas/EmailBusinessChannel'
+          
     SocialChannel: 
       type: object
       properties: 
@@ -162,6 +165,7 @@ components:
           type: string
         whatever: 
           type: string
+          
     EmailIndividualChannel: 
       type: object
       properties: 
@@ -169,6 +173,7 @@ components:
           type: string
         whatever: 
           type: string
+          
     EmailBusinessChannel: 
       type: object
       properties: 
