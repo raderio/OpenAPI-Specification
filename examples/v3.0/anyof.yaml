@@ -14,18 +14,6 @@ info:
 servers:
   - url: http://petstore.swagger.io/api
 paths:
-  /goods:
-      patch:
-        requestBody:
-          content:
-            application/json:
-              schema:
-                anyOf:
-                  - $ref: '#/components/schemas/PetByAge'
-                  - $ref: '#/components/schemas/PetByType'
-        responses:
-          '200':
-            description: Updated
   /pets:
     get:
       description: |
@@ -136,43 +124,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PetByAge:
-      type: object
-      properties: 
-        age: 
-          type: integer
-        nickname: 
-          type: string
-      required:
-        - age
-          
-    PetByType:
-      anyOf:
-        - $ref: '#/components/schemas/PetByTypeIn'
-        - $ref: '#/components/schemas/PetByTypeOut'
-        
-    PetByTypeIn:
-      type: object
-      properties:
-        pet_type:
-          type: string
-          enum: [Cat, Dog]
-        hunts:
-          type: boolean
-      required: 
-        - pet_type
-          
-    PetByTypeOut:
-      type: object
-      properties:
-        pet_out_type:
-          type: string
-          enum: [Dog, Cow]
-        hunts:
-          type: boolean
-      required: 
-        - pet_out_type
-        
     Pet:
       allOf:
         - $ref: '#/components/schemas/NewPet'
@@ -184,13 +135,46 @@ components:
               format: int64
 
     NewPet:
-      required:
-        - name  
-      properties:
-        name:
+      type: object
+      properties: 
+       payload: 
+         anyOf: 
+         - $ref: '#/components/schemas/IndividualRegistration'
+         - $ref: '#/components/schemas/BusinessRegistration'
+         type: object
+    IndividualRegistration: 
+      type: object
+      properties: 
+        channel: 
+          anyOf: 
+          - $ref: '#/components/schemas/SocialChannel'
+          - $ref: '#/components/schemas/EmailIndividualChannel'
+          type: object
+    BusinessRegistration: 
+      type: object
+      properties: 
+        channel: 
+          - $ref: '#/components/schemas/EmailBusinessChannel'
+    SocialChannel: 
+      type: object
+      properties: 
+        name: 
           type: string
-          nullable: true
-        tag:
+        whatever: 
+          type: string
+    EmailIndividualChannel: 
+      type: object
+      properties: 
+        address: 
+          type: string
+        whatever: 
+          type: string
+    EmailBusinessChannel: 
+      type: object
+      properties: 
+        address: 
+          type: string
+        whateverbusiness: 
           type: string    
 
     Error:
